@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Shade|Covered+By+Your+Grace" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>Alicia's Clock</title>
+</head>
+<body>
+    <h1>The Relentless Timer</h1>
+    <!-- <span id="clock">Time goes here</span> -->
+    <div class="flex-container">
+      <div class="clock">
+        <div class="hand hour" data-hour-hand></div>
+        <div class="hand minute" data-minute-hand></div>
+        <div class="hand second" data-second-hand></div>
+        <div class="number number1">1</div>
+        <div class="number number2">2</div>
+        <div class="number number3">3</div>
+        <div class="number number4">4</div>
+        <div class="number number5">5</div>
+        <div class="number number6">6</div>
+        <div class="number number7">7</div>
+        <div class="number number8">8</div>
+        <div class="number number9">9</div>
+        <div class="number number10">10</div>
+        <div class="number number11">11</div>
+        <div class="number number12">12</div>
+      </div>
+    </div>
+</body>
+
+<script>
+
+//Analog clock
+  const hourHand = document.querySelector('[data-hour-hand]')
+  const minuteHand = document.querySelector('[data-minute-hand]')
+  const secondHand = document.querySelector('[data-second-hand]')
+
+  const setClock = () => {
+    const currentDate = new Date()
+
+    const secondsRatio = currentDate.getSeconds() / 60
+    const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60
+    const hoursRatio = (minutesRatio + currentDate.getHours()) / 12
+
+    setRotation(hourHand, hoursRatio);
+    setRotation(minuteHand, minutesRatio);
+    setRotation(secondHand, secondsRatio);
+  }
+
+  const setRotation = (element, rotationRatio) => {
+    element.style.setProperty('--rotation', rotationRatio * 360)
+  }
+
+  setInterval(setClock, 1000)
+  setClock()
+
+
+//Digital Clock
+  // const showCurrentTime = () => {
+  //   let clock = document.getElementById('clock');
+  //
+  //   const currentTime = new Date();
+  //
+  //   let hours = currentTime.getHours();
+  //   let minutes = currentTime.getMinutes();
+  //   let seconds = currentTime.getSeconds();
+  //
+  //
+  //   if(hours > noon) { hours = hours - 12 };
+  //   if(minutes < 10) { minutes = '0' + minutes };
+  //   if(seconds < 10) { seconds = '0' + seconds };
+  //
+  //   let clockTime = hours + ':' + minutes + ':' + seconds + '' + meridian;
+  //
+  //   clock.innerHTML = clockTime;
+  // }
+  //
+  // showCurrentTime();
+  //
+  // Getting the clock to increment once a second
+  // var oneSecond = 1000;
+  // setInterval( showCurrentTime, oneSecond);
+
+</script>
+</html>
